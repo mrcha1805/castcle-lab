@@ -1,0 +1,44 @@
+{
+  "root": true,
+  "ignorePatterns": ["**/*"],
+  "plugins": ["@nrwl/nx", "import", "unused-imports"],
+  "extends": ["plugin:prettier/recommended"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@nrwl/nx/typescript"],
+      "rules": {
+        "@nrwl/nx/enforce-module-boundaries": [
+          "error",
+          {
+            "enforceBuildableLibDependency": true,
+            "allow": [],
+            "depConstraints": [
+              {
+                "sourceTag": "*",
+                "onlyDependOnLibsWithTags": ["*"]
+              }
+            ]
+          }
+        ],
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-unused-vars": "error",
+        "import/order": [
+          "error",
+          { "alphabetize": { "order": "asc", "caseInsensitive": false } }
+        ],
+        "no-duplicate-imports": ["error", { "includeExports": true }],
+        "no-useless-escape": "off",
+        "sort-imports": ["error", { "ignoreDeclarationSort": true }],
+        "unused-imports/no-unused-imports": "error"
+      }
+    },
+    {
+      "files": ["*.spec.ts"],
+      "rules": {
+        "@nrwl/nx/enforce-module-boundaries": "off"
+      }
+    }
+  ],
+  "rules": {}
+}

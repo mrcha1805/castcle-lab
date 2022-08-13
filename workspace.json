@@ -1,0 +1,29 @@
+{
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json",
+  "version": 2,
+  "projects": {
+    "analytics": "apps/analytics",
+    "authentications": "apps/authentications",
+    "auto-posts": "apps/auto-posts",
+    "backgrounds": "apps/backgrounds",
+    "backoffices": "apps/backoffices",
+    "database": "libs/database",
+    "e2e-deprecated": "libs/e2e",
+    "e2e": "tests/e2e",
+    "environments": "libs/environments",
+    "feeds": "apps/feeds",
+    "healthy": "libs/healthy",
+    "logger": "libs/logger",
+    "queues": "apps/queues",
+    "throttler": "libs/throttler",
+    "tracing": "libs/tracing",
+    "users": "apps/users",
+    "utils-aws": "libs/utils/aws",
+    "utils-clients": "libs/utils/clients",
+    "utils-commons": "libs/utils/commons",
+    "utils-decorators": "libs/utils/decorators",
+    "utils-exception": "libs/utils/exception",
+    "utils-interceptors": "libs/utils/interceptors",
+    "utils-pipes": "libs/utils/pipes"
+  }
+}

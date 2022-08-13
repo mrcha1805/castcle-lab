@@ -1,0 +1,55 @@
+/*
+ * Copyright (c) 2021, Castcle and/or its affiliates. All rights reserved.
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+ *
+ * This code is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License version 3 only, as
+ * published by the Free Software Foundation.
+ *
+ * This code is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License
+ * version 3 for more details (a copy is included in the LICENSE file that
+ * accompanied this code).
+ *
+ * You should have received a copy of the GNU General Public License version
+ * 3 along with this work; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+ *
+ * Please contact Castcle, 22 Phet Kasem 47/2 Alley, Bang Khae, Bangkok,
+ * Thailand 10160, or visit www.castcle.com if you need additional information
+ * or have any questions.
+ */
+
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { SchemaTypes } from 'mongoose';
+import { AdsCost, AdsPlacementCampaign, AdsPlacementContent } from '../models';
+import { CastcleBase } from './base.schema';
+import { Credential } from './credential.schema';
+import { User } from './user.schema';
+
+@Schema({ timestamps: true })
+export class AdsPlacement extends CastcleBase {
+  @Prop({ required: true, type: Array })
+  contents: AdsPlacementContent[];
+
+  @Prop({ required: true, type: Object })
+  cost: AdsCost;
+
+  @Prop({ required: true, type: Object })
+  campaign: AdsPlacementCampaign;
+
+  @Prop({ required: true, type: SchemaTypes.ObjectId, ref: 'User' })
+  user: User;
+
+  @Prop({ type: Object })
+  engagements: { [key: string]: number };
+
+  @Prop()
+  seenAt?: Date; //crucial use for calculate ads-fee / redistribute reward
+
+  @Prop({ type: SchemaTypes.ObjectId, ref: 'Credential' })
+  seenCredential?: Credential;
+}
+
+export const AdsPlacementSchema = SchemaFactory.createForClass(AdsPlacement);

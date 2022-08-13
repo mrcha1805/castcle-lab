@@ -1,0 +1,7 @@
+build
+coverage
+dist
+node_modules
+jest.config.ts
+jest.preset.ts
+jest.setup.ts
